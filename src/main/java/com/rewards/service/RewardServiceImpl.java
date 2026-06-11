@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.rewards.dto.CustomerRewardResponse;
 import com.rewards.entity.Transaction;
+import com.rewards.exception.ResourceNotFoundException;
 import com.rewards.repository.TransactionRepository;
 
 @Service
@@ -79,7 +80,7 @@ public class RewardServiceImpl implements RewardService {
 	            .toList();
 
 	    if (list.isEmpty()) {
-	        throw new RuntimeException("Customer not found");
+	        throw new ResourceNotFoundException("Customer not found");
 	    }
 
 	    return buildRewardResponse(list);
